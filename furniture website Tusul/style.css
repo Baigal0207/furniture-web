@@ -58,7 +58,7 @@ header {
 }
 .home {
   width: 100%;
-  min-height: 100vh;
+  min-height: 45vh;
   background-image: url(img/background.jpg);
   background-repeat: no-repeat;
   background-size: covere;
@@ -416,10 +416,7 @@ ul li ul li:hover ul.dropdown2{
     }
     .about-text h2{
         font-size: 1.2rem;
-    }
-  
-    
-  
+    } 
 }
 
 .popup-container {
@@ -455,7 +452,9 @@ ul li ul li:hover ul.dropdown2{
   height: auto; /* Maintain aspect ratio */
 }
 
-
+.popup-info .price {
+  color: #83b735;
+}
 
 .popup-info {
   flex: 1;
