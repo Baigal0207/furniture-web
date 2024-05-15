@@ -22,7 +22,7 @@
             </div>
     
             <li><a href="index.html">Нүүр</a></li>
-            <li class="dropdown"><a href="#">Бүтээгдэхүүн</a></li>
+            <li class="dropdown"><a href="category.php">Бүтээгдэхүүн</a></li>
             <li><a href="#about">Бусад</a></li>
 
             <li><a href="#contact">Холбоо барих</a></li>

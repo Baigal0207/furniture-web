@@ -1,131 +1,180 @@
-<?php
-// Establish database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "store";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$categoryQuery = "SELECT * FROM Baraa_Angilal";
-$categoryResult = mysqli_query($conn, $categoryQuery);
-
-// Store main categories in an array
-$categories = [];
-while ($categoryRow = mysqli_fetch_assoc($categoryResult)) {
-    $categoryRow['subcategories'] = []; // Initialize subcategories array
-    $categories[$categoryRow['Baraa_Angilal_ID']] = $categoryRow;
-}
-
-// Query database for sub-categories
-$subCategoryQuery = "SELECT * FROM Baraa_Ded_Angilal";
-$subCategoryResult = mysqli_query($conn, $subCategoryQuery);
-
-// Store sub-categories under their respective main categories
-while ($subCategoryRow = mysqli_fetch_assoc($subCategoryResult)) {
-    $categoryId = $subCategoryRow['Baraa_Angilal_ID'];
-    $categories[$categoryId]['subcategories'][] = $subCategoryRow;
-}
-
-// Close database connection
-mysqli_close($conn);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories and Products</title>
+    <title>Responsive Furniture Website</title>
+    <!--Link To Css-->
+    <link rel="stylesheet" href="style.css">
+    <!--Box Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <style>
-         .container {
+        /* Custom CSS styles for layout */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body {
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        .sidebar {
-            width: 200px;
+        .container {
+            margin-top: 50px;
+            display: flex;
+            flex: 1;
+        }
+
+        .categories {
+            width: 20%;
+            background-color: #f5f5f5;
             padding: 20px;
         }
-        .content {
-            flex-grow: 1;
+
+        .products {
+            width: 80%;
             padding: 20px;
         }
-        .sidebar h2 {
+        .cont{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+            gap: 1rem;
+            margin-top: 2rem;
+            
+        }
+        /* Additional styles for better appearance */
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-item {
             margin-bottom: 10px;
         }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
+
+        .category-item a {
+            display: block;
+            padding: 6px;
+            border-radius: 5px;
+            background-color: #ddd;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
-        .sidebar li {
+
+        .category-item a:hover {
+            background-color: #ccc;
+        }
+
+        /* Style for subcategories */
+        .subcategory-list {
+            margin-top: 5px;
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 1px solid #ccc;
+        }
+
+        .subcategory-item {
             margin-bottom: 5px;
         }
-        .sidebar li a {
-            text-decoration: none;
-            color: #000;
+
+        .subcategory-item a {
+            font-size: 0.9em;
+            color: #666;
         }
-        .sidebar li a:hover {
-            color: #333;
+
+        .subcategory-item a:hover {
+            text-decoration: underline;
         }
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .products {
+                width: 100%;
+            }
+
+            .categories{
+                display: none;
+            }
+        }
+        
     </style>
 </head>
 <body>
+    <!--Navbar-->
+    <header>
+        <a href="#" class="logo">Urban<span>Aero.</span></a>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <ul class="navbar">
+            <li><a href="index.php">Нүүр</a></li>
+            <li class="dropdown"><a href="#">Бүтээгдэхүүн</a></li>
+            <li><a href="#about">Бусад</a></li>
+            <li><a href="#contact">Холбоо барих</a></li>
+            <li><i class='bx bx-cart' ></i></li>
+            <li><i class='bx bx-user' ></i></li>
+            <li><i class='bx bx-search' ></i></li>
+        </ul>
+    </header>
+
+    <!-- Main Content -->
     <div class="container">
-        <div class="sidebar">
-            <h2>Categories</h2>
-            <ul>
-                <?php foreach ($categories as $category): ?>
-                    <li>
-                        <a href="#"><?php echo $category['Angilal_ner']; ?></a>
-                        <?php if (!empty($category['subcategories'])): ?>
-                            <ul>
-                                <?php foreach ($category['subcategories'] as $subcategory): ?>
-                                    <li>
-                                        <a href="category.php?category_id=<?php echo $subcategory['Baraa_Ded_Angilal_ID']; ?>">
-                                            <?php echo $subcategory['Ded_Angilal_ner']; ?>
-                                        </a>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
-                    </li>
-                <?php endforeach; ?>
+        <!-- Categories Section -->
+        <section class="categories" id="categories">
+            <h3>Манай ангилалууд</h3>
+            <ul class="category-list">
+                <?php include 'get_category.php'; ?>
             </ul>
-        </div>
-        <div class="content">
-            <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "store";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            
-            // Check if a category is selected
-            if (isset($_GET['category_id'])) {
-                $selectedCategoryId = $_GET['category_id'];
-                // Query database for products in the selected category
-                $productQuery = "SELECT * FROM baraa_lavlah WHERE Baraa_Ded_Angilal_ID = $selectedCategoryId";
-                $productResult = mysqli_query($conn, $productQuery);
-                // Display products
-                if (mysqli_num_rows($productResult) > 0) {
-                    echo "<h2>Products</h2>";
-                    echo "<ul>";
-                    while ($productRow = mysqli_fetch_assoc($productResult)) {
-                        echo "<li>{$productRow['Baraa_ner']}</li>";
-                    }
-                    echo "</ul>";
-                } else {
-                    echo "<p>No products found for this category.</p>";
-                }
-            } else {
-                echo "<p>Please select a category from the left sidebar.</p>";
-            }
-            ?>
-        </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products" id="products">
+            <!-- Your product content goes here -->
+            <h2>Бүтээгдэхүүнүүд</h2>
+            <p>Products will be displayed here.</p>
+            <div class="cont" id="product-container">
+                <?php include 'switchItems.php'; ?>
+            </div>
+        </section>
+        
     </div>
+
+    <section class="footer" id="footer">
+        <div class="footer-box">
+            <h2>Urban <span>Aero.</span></h2>
+            <p>Таны хэрэгцээнд төгс нийцэх өөр өөрийн өнгө аяс бүхий дэлхийн шилдэг брэндүүдийг таны гэрт.</p>
+            <div class="social">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+            </div>
+        </div>
+        
+        <div class="footer-box contact-info">
+            <h3>Холбоо барих</h3>
+            <span>Монгол улс, Улаанбаатар хот, Хан-Уул дүүрэг, Чингисийн өргөн чөлөө, Мишээл экспо, Мишээл-3 төв</span>
+            <span>Утас: 7777-9393</span>
+            <span>info@UrbanAero.com</span>
+        </div>
+    </section>
+    <div class="copyright">
+        <p>&#169; "UrbanAero" ХХК ©2024</p>
+    </div>
+    <script src="main.js">
+        function filterProducts(categoryId) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("product-container").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "filterProducts.php?category_id=" + categoryId, true);
+        xhttp.send();
+    }
+    </script>
 </body>
 </html>
