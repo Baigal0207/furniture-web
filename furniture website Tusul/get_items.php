@@ -1,6 +1,6 @@
 <?php
 // Establish database connection
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";
 $password = "";
 $dbname = "store";
@@ -24,13 +24,16 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "<div class='box'>";
         echo "<div class='box-img'><img src='data:image/jpeg;base64," . base64_encode($row["Baraa_zurag"]) . "' alt=''></div>";
+        echo "<div class='content'>";
         echo "<div class='title-price'>";
         echo "<h3>" . $row["Baraa_ner"] . "</h3>";
         // You can add more elements here such as description, ratings, etc.
         echo "</div>";
         echo "<span>" . $row["Baraa_vne"] . "</span>";
+        echo "</div>";
         echo "<i class='bx bx-cart'></i>";
         echo "</div>";
+
     }
 } else {
     echo "0 results";

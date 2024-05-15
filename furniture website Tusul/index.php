@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <!--Box Icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
 <body>
     <!--Navbar-->
@@ -17,17 +17,17 @@
         <a href="#" class="logo">Urban<span>Aero.</span></a>
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
-            <div class="header-action">
-              </div>
-            </div>
-    
+            <form action="search.html" method="post" class="search-form">
+                <input type="text" name="search_box" required placeholder="Search courses..." maxlength="100">
+                <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+            </form>
+
             <li><a href="index.php">Нүүр</a></li>
             <li><a href="category.php">Бүтээгдэхүүн</a></li>
             <li><a href="#about">Бусад</a></li>
             <li><a href="#contact">Холбоо барих</a></li>
-            <li><i class='bx bx-cart' ></i></li>
-            <li><i class='bx bx-user' ></i></li>
-            <li><i class='bx bx-search' ></i></li>
+            <li><a href="order.php"><i class='bx bx-cart' ></i></a></li>
+            <li><a href="#"><i class='bx bx-user' ></i></a></li>
         </ul>
     </header>
     <!--Home-->
@@ -50,18 +50,6 @@
         </div>
     </section>
 
-<!--New Arrival-->
-<section class="new" id="new">
-    <div class="heading">
-        <span>New Collection</span>
-        <h2>Шилдэг борлуулалт</h2>
-    </div>
-    <!--content-->
-    <div class="new-container">
-           <!--Box 1-->
-           <?php include 'get_topItems.php'; ?>
-    </div>
-</section>
 <!--About-->
 <section class="about" id="about">
     <div class="about-img">

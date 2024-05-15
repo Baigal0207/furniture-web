@@ -41,17 +41,57 @@ header {
 .navbar {
   position: relative;
   display: flex;
+  align-items: center;
 }
 .navbar a {
   font-size: 1rem;/*navbar usgiin hemjee*/
-  padding: 10px 30px;
+  padding: 20px 30px;
   font-weight: 500;/*usgiin bolt*/
   color: var(--text-color);
+}
+
+.navbar i {
+  font-size: 1.3rem;
 }
 
 .navbar a:hover {
   color: var(--main-color);
 }
+
+.search-form {
+  position: relative;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.search-form input[type="text"] {
+  width: 300px;
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.search-button {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.search-button i {
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.cart{
+  margin-top: 50px;
+}
+
 #menu-icon {
   font-size: 2rem;
   cursor: pointer;
@@ -479,3 +519,66 @@ ul li ul li:hover ul.dropdown2{
 }
 
 
+/* Additional CSS for order page */
+.cart {
+  padding: 50px 10%;
+  background: #f9f9f9;
+}
+
+.order-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.order-item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+}
+
+.order-item-info h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.order-item-info span {
+  font-size: 1rem;
+  color: var(--main-color);
+}
+
+.remove-btn {
+  background: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #ff3333;
+}
+
+.total {
+  text-align: right;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 20px;
+}

@@ -117,7 +117,6 @@
             <li><a href="#contact">Холбоо барих</a></li>
             <li><i class='bx bx-cart' ></i></li>
             <li><i class='bx bx-user' ></i></li>
-            <li><i class='bx bx-search' ></i></li>
         </ul>
     </header>
 
