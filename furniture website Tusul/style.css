@@ -48,6 +48,7 @@ header {
   font-weight: 500;/*usgiin bolt*/
   color: var(--text-color);
 }
+
 .navbar a:hover {
   color: var(--main-color);
 }

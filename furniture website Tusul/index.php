@@ -21,13 +21,12 @@
               </div>
             </div>
     
-            <li><a href="index.html">Нүүр</a></li>
-            <li class="dropdown"><a href="category.php">Бүтээгдэхүүн</a></li>
+            <li><a href="index.php">Нүүр</a></li>
+            <li><a href="category.php">Бүтээгдэхүүн</a></li>
             <li><a href="#about">Бусад</a></li>
-
             <li><a href="#contact">Холбоо барих</a></li>
             <li><i class='bx bx-cart' ></i></li>
-           <li> <i class='bx bx-user' ></i></li>
+            <li><i class='bx bx-user' ></i></li>
             <li><i class='bx bx-search' ></i></li>
         </ul>
     </header>
