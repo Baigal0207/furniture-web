@@ -31,12 +31,12 @@ if ($result->num_rows > 0) {
         echo "</div>";
         echo "<span>" . $row["Baraa_vne"] . "</span>";
         echo "</div>";
-        echo "<i class='bx bx-cart'></i>";
+        echo "<a href='' id='cart-icon'><i class='bx bx-cart'></i></a>"; // Add cart icon here
         echo "</div>";
-
     }
 } else {
     echo "0 results";
 }
+
 $conn->close();
 ?>

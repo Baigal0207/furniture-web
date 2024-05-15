@@ -70,6 +70,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 const itemPrice = selectedItem.querySelector('span').innerText;
 
                 addToOrder(itemName, itemPrice, itemImgSrc);
+                const queryParams = new URLSearchParams({
+                    name: itemName,
+                    price: itemPrice,
+                    img: itemImgSrc
+                }).toString();
+                window.location.href = `order.php?${queryParams}`;
             } else {
                 console.error('Error: No selected item found.');
             }
@@ -78,7 +84,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function addToOrder(name, price, imgSrc) {
-    // Implement your logic to add the item to the order here
-    // For example, you can add it to local storage or display it in a separate order container
-    // You can also modify the existing popup to show the selected item details
+    const newItem = document.createElement('li');
+    newItem.classList.add('order-item');
+    newItem.innerHTML = `
+        <div class="item-info">
+            <h3>${name}</h3>
+            <p>Price: ${price}</p>
+        </div>
+        <div class="item-img">
+            <img src="${imgSrc}" alt="${name}">
+        </div>
+    `;
+
+    // Append the new item to the order list
+    const orderList = document.querySelector('.order-items');
+    orderList.appendChild(newItem);
+
 }

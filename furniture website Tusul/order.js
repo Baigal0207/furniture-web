@@ -1,39 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const orderItemsContainer = document.querySelector('.order-items');
-    const totalDisplay = document.querySelector('.total');
-    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+document.addEventListener('DOMContentLoaded', function() {
+    const orderContainer = document.querySelector('.order-items');
+    const totalElement = document.querySelector('.total');
 
-    function displayOrders() {
-        orderItemsContainer.innerHTML = '';
-        let total = 0;
-        orders.forEach(order => {
+    // Retrieve ordered items from local storage
+    const orderedItems = JSON.parse(localStorage.getItem('cartItems'));
+
+    // Check if there are any ordered items
+    if (orderedItems && orderedItems.length > 0) {
+        // Initialize total price
+        let totalPrice = 0;
+
+        // Iterate over ordered items and create HTML elements dynamically
+        orderedItems.forEach(item => {
             const li = document.createElement('li');
-            li.classList.add('order-item');
             li.innerHTML = `
-                <div class="order-item-info">
-                    <h3>${order.product}</h3>
-                    <span>$${order.price.toFixed(2)}</span>
+                <div class="order-item">
+                    <div class="item-info">
+                        <h3>${item.name}</h3>
+                        <p>Price: $${item.price}</p>
+                    </div>
                 </div>
-                <button class="remove-btn" data-product="${order.product}">Remove</button>
             `;
-            orderItemsContainer.appendChild(li);
-            total += order.price;
+            // Append item to order container
+            orderContainer.appendChild(li);
+
+            // Add item price to total price
+            totalPrice += parseFloat(item.price);
         });
-        totalDisplay.textContent = `Нийт үнэ: $${total.toFixed(2)}`;
+
+        // Update total price displayed on the page
+        totalElement.textContent = `Нийт үнэ: $${totalPrice.toFixed(2)}`;
+    } else {
+        // If no ordered items found, display a message
+        const message = document.createElement('p');
+        message.textContent = 'Таны сагс хоосон байна.';
+        orderContainer.appendChild(message);
     }
-
-    function removeItem(product) {
-        orders = orders.filter(order => order.product !== product);
-        localStorage.setItem('orders', JSON.stringify(orders));
-        displayOrders();
-    }
-
-    orderItemsContainer.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-btn')) {
-            const product = e.target.getAttribute('data-product');
-            removeItem(product);
-        }
-    });
-
-    displayOrders();
 });

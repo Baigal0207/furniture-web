@@ -18,7 +18,7 @@
         <div class="bx bx-menu" id="menu-icon"></div>
         <ul class="navbar">
             <form action="search.html" method="post" class="search-form">
-                <input type="text" name="search_box" required placeholder="Search courses..." maxlength="100">
+                <input type="text" name="search_box" required placeholder="Search products..." maxlength="100">
                 <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
             </form>
 
@@ -27,7 +27,7 @@
             <li><a href="#about">Бусад</a></li>
             <li><a href="#contact">Холбоо барих</a></li>
             <li><a href="order.php"><i class='bx bx-cart' ></i></a></li>
-            <li><a href="#"><i class='bx bx-user' ></i></a></li>
+            <li><a href="\furniture-web\furniture website Tusul\user\home.html"><i class='bx bx-user' ></i></a></li>
         </ul>
     </header>
     <!--Home-->
@@ -79,7 +79,7 @@
  <!-- Footer -->
  <?php include 'footer.php'?>;
 
-<div class="popup-container" id="popup-container">
+ <div class="popup-container" id="popup-container">
     <div class="popup-content">
         <div class="popup-img">
             <img src="" alt="" id="popup-item-img">
@@ -89,12 +89,27 @@
             <div class="popup-stars">
                 <!-- Stars rating -->
             </div>
-            <span id="popup-item-price"></span>
+            <p id="popup-item-description"></p>
+            <div class="popup-details">
+                <p><strong>Өнгө:</strong> <span id="popup-item-color"> Цагаан</span></p>
+                <p><strong>Материал:</strong> <span id="popup-item-material"> Даавуу</span></p>
+                <p><strong>Үйлдвэрлэсэн:</strong> <span id="popup-item-dimensions">Хонгконг</span></p>
+            </div>
+            <div class="popup-price-quantity">
+                <span id="popup-item-price"></span>
+                <div class="quantity-selector">
+                    <button class="quantity-btn" id="decrease-quantity">-</button>
+                    <input type="text" id="item-quantity" value="1" readonly>
+                    <button class="quantity-btn" id="increase-quantity">+</button>
+                </div>
+            </div>
         </div>
         
         <button class="close-btn" id="close-popup">ⓧ</button>
+        <button class="order-btn order-btn-bottom-right">Order Now</button>
     </div>
 </div>
+
 
     <!-- Link To JS -->
     <script src="main.js"></script>
